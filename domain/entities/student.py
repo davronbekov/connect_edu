@@ -1,9 +1,9 @@
-from domain.entities.base import Base
+from src.entities import Entities
 from domain.entities.skill import Skills
 from domain.entities.language import Languages
 
 
-class Student(Base):
+class Student(Entities):
     def __init__(self, group_by: set):
         super().__init__(prefix="Student", group_by=group_by)
         self.attributes = [

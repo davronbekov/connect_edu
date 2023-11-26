@@ -1,4 +1,4 @@
-from domain.entities.base import Base
+from src.entities import Entities
 from src.config import read_yaml
 
 
@@ -11,7 +11,7 @@ class Builder:
         conf = read_yaml('config.yaml')
         self.DOMAIN = conf['domain']
 
-    def parse(self, cls: Base, attrs: dict):
+    def parse(self, cls: Entities, attrs: dict):
         for attribute in attrs:
             if attribute in cls.group_by:
                 self.groups.append(
@@ -22,7 +22,7 @@ class Builder:
 
             self.queries.append(f'?{cls.get_prefix()} {self.DOMAIN}:{attribute} ?{attrs[attribute]}')
 
-    def query(self, cls: Base):
+    def query(self, cls: Entities):
         self.queries = [f'?{cls.get_prefix()} a {self.DOMAIN}:{cls.prefix}']
         self.parse(cls, cls.get_attributes())
 

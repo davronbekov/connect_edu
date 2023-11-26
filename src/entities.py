@@ -1,6 +1,6 @@
 
 
-class Base:
+class Entities:
     def __init__(self, prefix: str, group_by: set):
         self.attributes = []
         self.prefix = prefix
