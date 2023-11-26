@@ -43,5 +43,5 @@ class Builder:
         if len(self.groups):
             items = items + ['GROUP BY'] + self.attributes
 
-        return items
+        return ' '.join(items)
 
