@@ -22,6 +22,10 @@ class Builder:
 
             self.queries.append(f'?{cls.get_prefix()} {self.DOMAIN}:{attribute} ?{attrs[attribute]}.')
 
+    def where(self, attribute: str, val: str):
+        self.queries.append(f'FILTER (?{attribute}="{val}").')
+        return self
+
     def query(self):
         self.queries = [f'?{self.cls.get_prefix()} a {self.DOMAIN}:{self.cls.prefix}.']
         self.parse(self.cls, self.cls.get_attributes())

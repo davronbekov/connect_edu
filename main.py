@@ -26,7 +26,7 @@ from domain.entities.student import Student
 from SPARQLWrapper import SPARQLWrapper2
 from src.config import read_yaml
 
-q = Student(set()).query().get()
+q = Student(set()).query().where('students_first_name', 'Otabek').get()
 print(q)
 
 config = read_yaml('config.yaml')
