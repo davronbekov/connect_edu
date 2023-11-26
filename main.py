@@ -31,7 +31,7 @@ print(q)
 
 config = read_yaml('config.yaml')
 
-sparql = SPARQLWrapper2("http://localhost:3030/connect_edu/query")
+sparql = SPARQLWrapper2(config['api_endpoint'])
 sparql.setQuery(q)
 result = sparql.query().bindings
 
