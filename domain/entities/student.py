@@ -5,11 +5,10 @@ from domain.entities.language import Languages
 
 class Student(Entities):
     def __init__(self, group_by: set):
-        super().__init__(prefix="Student", group_by=group_by)
+        super().__init__(prefix="Students", group_by=group_by)
         self.attributes = [
             'first_name',
             'second_name',
-            'data_of_birth'
         ]
 
     def get_objects(self) -> dict:

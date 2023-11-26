@@ -76,7 +76,21 @@
 #     print(x)
 
 
-from src.builder import Builder
 from domain.entities.student import Student
+from domain.entities.skill import Skills
+from SPARQLWrapper import SPARQLWrapper2
+from src.config import read_yaml
 
-Builder().query(Student(set()))
+q = ' '.join(Student(set()).query().get())
+print(q)
+
+config = read_yaml('config.yaml')
+
+sparql = SPARQLWrapper2("http://localhost:3030/connect_edu/query")
+sparql.setQuery(q)
+result = sparql.query().bindings
+
+for x in result:
+    print(x)
+
+

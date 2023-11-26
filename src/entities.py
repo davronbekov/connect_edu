@@ -1,3 +1,4 @@
+from src.builder import Builder
 
 
 class Entities:
@@ -5,6 +6,7 @@ class Entities:
         self.attributes = []
         self.prefix = prefix
         self.group_by = group_by
+        self.builder = None
 
     def get_prefix(self):
         return self.prefix.lower()
@@ -19,3 +21,7 @@ class Entities:
 
     def get_objects(self) -> dict:
         return {}
+
+    def query(self):
+        self.builder = Builder(self).query()
+        return self.builder
