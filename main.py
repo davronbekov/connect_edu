@@ -76,7 +76,7 @@
 #     print(x)
 
 
-from domain.builder import Builder
+from src.builder import Builder
 from domain.entities.student import Student
 
 Builder().query(Student(set()))
