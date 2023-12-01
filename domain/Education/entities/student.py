@@ -1,6 +1,6 @@
 from src.entities import Entities
-from domain.entities.skill import Skills
-from domain.entities.language import Languages
+from domain.Personal.entities.skill import Skills
+from domain.Personal.entities.language import Languages
 
 
 class Student(Entities):
