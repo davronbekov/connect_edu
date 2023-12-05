@@ -20,21 +20,24 @@ class Builder:
             else:
                 self.attributes.append(f'?{attrs[attribute]}')
 
-            self.queries.append(f'?{cls.get_prefix()} {self.DOMAIN}:{attribute} ?{attrs[attribute]}.')
+            query = ['OPTIONAL{'] + [f'?{cls.get_prefix()} {self.DOMAIN}:{attribute} ?{attrs[attribute]}.'] + ['}']
+            self.queries.append(''.join(query))
 
     def where(self, attribute: str, val: str):
         self.queries.append(f'FILTER (?{attribute}="{val}").')
         return self
 
     def query(self):
-        self.queries = [f'?{self.cls.get_prefix()} a {self.DOMAIN}:{self.cls.prefix}.']
+        query = ['{'] + [f'?{self.cls.get_prefix()} a {self.DOMAIN}:{self.cls.prefix}'] + ['}']
+        self.queries = [''.join(query)]
         self.parse(self.cls, self.cls.get_attributes())
 
         relations = self.cls.get_objects()
         for relation in relations:
             relation_cls = relations[relation]
 
-            self.queries.append(f'?{self.cls.get_prefix()} {self.DOMAIN}:{relation} ?{relation_cls.get_prefix()}.')
+            query = ['OPTIONAL{'] + [f'?{self.cls.get_prefix()} {self.DOMAIN}:{relation} ?{relation_cls.get_prefix()}'] + ['}']
+            self.queries.append(''.join(query))
             self.parse(relation_cls, relation_cls.get_attributes())
 
         return self
