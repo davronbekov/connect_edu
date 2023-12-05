@@ -1,5 +1,5 @@
 domain: 'connect'
-api_endpoint: 'http://localhost:3030/connect_edu/query'
+api_endpoint: 'http://localhost:3030/linking_students/query'
 namespaces:
   - 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>'
   - 'PREFIX con: <http://www.w3.org/2000/10/swap/pim/contact#>'

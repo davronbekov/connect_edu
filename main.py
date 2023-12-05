@@ -1,4 +1,4 @@
-from domain.Education.entities.student import Student
+from domain.Education.student import Student
 from SPARQLWrapper import SPARQLWrapper2
 from src.config import read_yaml
 
@@ -6,7 +6,6 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 import re
 from string import punctuation
-
 
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -38,25 +37,22 @@ def create_pos_tags(sent):
     return sent
 
 
-items = [
-    # 'Who studies Artificial Intelligence?',
-    # 'Who lives in Coleridge Road?',
-    'Who likes running?',
-    # 'Who skilled in programming?',
-    # 'Who graduates in 2024?',
-    # 'Who speaks Russian?',
-]
+#     'Students studying Artificial Intelligence?',
+#     'Who likes running?',
+#     'Who skilled in programming?',
+#     'Who graduates in 2024?',
+#     'Who speaks Russian?',
 
-for item in items:
-    print(create_pos_tags(process_text(item)))
-    # attributes_list = ['study', 'live', 'like', 'skill', 'graduate', 'speak']
+print('Please, write your text:')
+text = input()
+print(create_pos_tags(process_text(text)))
 
-# q = Student(set()).query().get()
-#
-# config = read_yaml('config.yaml')
-# sparql = SPARQLWrapper2(config['api_endpoint'])
-# sparql.setQuery(q)
-# result = sparql.query().bindings
-#
-# for x in result:
-#     print(x)
+q = Student(set()).query().get()
+
+config = read_yaml('config.yaml')
+sparql = SPARQLWrapper2(config['api_endpoint'])
+sparql.setQuery(q)
+result = sparql.query().bindings
+
+for x in result:
+    print(x)

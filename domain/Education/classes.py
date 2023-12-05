@@ -1,4 +1,5 @@
 from src.entities import Entities
+from domain.Education.course import Course
 
 
 class Class(Entities):
@@ -8,4 +9,9 @@ class Class(Entities):
             'start_year',
             'graduate_year',
         ]
+
+    def get_objects(self) -> dict:
+        return {
+            'class_course': Course(set())
+        }
 

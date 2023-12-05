@@ -1,5 +1,5 @@
 from src.entities import Entities
-from domain.Education.entities.campuse import Campuse
+from domain.Education.campus import Campus
 
 
 class University(Entities):
@@ -11,6 +11,6 @@ class University(Entities):
 
     def get_objects(self) -> dict:
         return {
-            'uni_campuses': Campuse(set())
+            'uni_campuses': Campus(set())
         }
 

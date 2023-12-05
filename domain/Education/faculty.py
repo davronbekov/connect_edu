@@ -1,4 +1,5 @@
 from src.entities import Entities
+from domain.Education.course import Course
 
 
 class Faculty(Entities):
@@ -7,4 +8,9 @@ class Faculty(Entities):
         self.attributes = [
             'faculty_name',
         ]
+
+    def get_objects(self) -> dict:
+        return {
+            'fac_course': Course(set())
+        }
 
