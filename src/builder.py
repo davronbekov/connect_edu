@@ -15,7 +15,7 @@ class Builder:
         for attribute in attrs:
             if attribute in cls.group_by:
                 self.groups.append(
-                    f'(GROUP_CONCAT(?{attrs[attribute]}; SEPARATOR=", ") AS ?{attrs[attribute]}s)'
+                    f'(GROUP_CONCAT(DISTINCT ?{attrs[attribute]}; SEPARATOR=", ") AS ?{attrs[attribute]}s)'
                 )
             else:
                 self.attributes.append(f'?{attrs[attribute]}')
@@ -41,7 +41,7 @@ class Builder:
 
     def get(self):
         items = self.conf['namespaces']
-        items = items + ['SELECT'] + self.attributes + self.groups
+        items = items + ['SELECT DISTINCT'] + self.attributes + self.groups
         items = items + ['WHERE {'] + self.queries + ['}']
 
         if len(self.groups):
