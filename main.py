@@ -44,7 +44,7 @@ text = input()
 pos_tags = create_pos_tags(process_text(text))
 
 bag_of_words = {
-    'skilled': 'skills_skill_names',
+    'skilled': 'skills_skill_name',
     'graduate': 'classes_graduate_year',
     'enrol': 'classes_start_year',
     'love': 'activities_activity_name',
@@ -53,12 +53,18 @@ bag_of_words = {
 
 students = Student(set()).query().where(bag_of_words[pos_tags[1][0]], pos_tags[-1][0]).get()
 
+print('SparQL')
+print(students)
+print('************')
+
 config = read_yaml('config.yaml')
 sparql = SPARQLWrapper2(config['api_endpoint'])
 sparql.setQuery(students)
 result = sparql.query().bindings
 
+print('Result:')
 for i, data in enumerate(result):
     print(f'Student #{i + 1}')
     for key in data:
         print(f'{key}: {data[key].value}')
+    print('~~~~~~~~~~~~~~~~~~~~~~~')
